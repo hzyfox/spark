@@ -92,7 +92,7 @@ private[spark] class SecurityManager(
     "; users  with modify permissions: " + modifyAcls.toString() +
     "; groups with modify permissions: " + modifyAclsGroups.toString())
 
-  private val hadoopConf = SparkHadoopUtil.get.newConfiguration(sparkConf)
+  private val hadoopConf = new SparkHadoopUtil().newConfiguration(sparkConf)
   // the default SSL configuration - it will be used by all communication layers unless overwritten
   private val defaultSSLOptions =
     SSLOptions.parse(sparkConf, hadoopConf, "spark.ssl", defaults = None)
